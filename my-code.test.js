@@ -1,4 +1,4 @@
-const { sum, inOneHour, multiplyAllNumbers, generateDir, isNumber } = require('./my-code');
+const { sum, inOneHour, multiplyAllNumbers, generateDir, isNumber, connectDB } = require('./my-code');
 
 describe("math functions", () => {
     beforeAll(() => {
@@ -45,3 +45,11 @@ describe("test a async function", () => {
         })
     })
 }) //Teste com funções assincronas
+
+describe("function to connect in mongodb database", () => {
+    it("to connect", async () => {
+        return connectDB().then(result => {
+            expect(result).toBe(true);
+        })
+    })
+})

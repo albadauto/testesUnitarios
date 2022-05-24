@@ -1,6 +1,7 @@
 const arr = [9, 8, 4];
 const { rejects } = require("assert");
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 
 function sum(a, b){
@@ -13,7 +14,13 @@ function inOneHour(){
     return now + oneHourInMili;
 }
 
-
+async function connectDB(){
+    if (await mongoose.connect("mongodb://localhost/econofly")){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 function multiplyAllNumbers(){
     return arr.map((val) => val * 2);
@@ -41,4 +48,6 @@ async function isNumber(x){
 }
 
 
-module.exports = { sum, inOneHour, multiplyAllNumbers, generateDir, isNumber };
+
+
+module.exports = { sum, inOneHour, multiplyAllNumbers, generateDir, isNumber, connectDB };
